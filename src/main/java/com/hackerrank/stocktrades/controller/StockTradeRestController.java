@@ -31,8 +31,6 @@ public class StockTradeRestController {
     public ResponseEntity<List<StockTrade>> getTrade(){
 
         List<StockTrade> all = stockTradeRepository.findAll();
-
-
         return ResponseEntity.status(HttpStatus.valueOf(200)).body(all);
     }
 

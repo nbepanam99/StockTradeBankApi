@@ -21,7 +21,7 @@ public class StockTradeRestController {
     }
 
     @PostMapping(path = "/trades")
-    public ResponseEntity<StockTrade> saveTrade(StockTrade stockTrade){
+    public ResponseEntity<StockTrade> saveTrade(@RequestBody StockTrade stockTrade){
 
         StockTrade save = stockTradeRepository.save(stockTrade);
 

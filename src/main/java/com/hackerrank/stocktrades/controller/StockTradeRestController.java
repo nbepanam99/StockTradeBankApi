@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class StockTradeRestController {
@@ -32,6 +33,16 @@ public class StockTradeRestController {
 
         List<StockTrade> all = stockTradeRepository.findAll();
         return ResponseEntity.status(HttpStatus.valueOf(200)).body(all);
+    }
+
+    @GetMapping(path = "/trades/{id}")
+    public ResponseEntity<StockTrade> getTrade(@PathVariable Integer id){
+        Optional<StockTrade> byId = stockTradeRepository.findById(id);
+        if (byId.isPresent()){
+            return ResponseEntity.status(HttpStatus.valueOf(200)).body(byId.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.valueOf(404)).build();
+        }
     }
 
     @DeleteMapping(path = "/trades/{id}")
